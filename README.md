@@ -20,37 +20,27 @@ How to migrate to your project?
   
      mWebview.setWebViewClient(new KZJSBridgeWebViewClient(mWebview, JSBridgeUtil.class));
   
-  1) JSBridgeUtil.class, this is the class where you should implement your methods invoked by js side;
-  2) mWebView, a WebView's instance;
-  3) If you have some other works in your webviewclient, javascript interception for example, you should subclass the KZJSBridgeWebViewClient and accomplish your code here. attention, if you ovrrided the VebViewClient method shouldOverrideUrlLoading, remember that you must invoke super.shouldOverrideUrlLoading(), otherwise this jsbridge will work unexpectativly.
+  (1) JSBridgeUtil.class, this is the class where you should implement your methods invoked by js side;
+  
+  (2) mWebView, a WebView's instance;
+  
+  (3) If you have some other works in your webviewclient, javascript interception for example, you should subclass the KZJSBridgeWebViewClient and accomplish your code here. attention, if you ovrrided the VebViewClient method shouldOverrideUrlLoading, remember that you must invoke super.shouldOverrideUrlLoading(), otherwise this jsbridge will work unexpectativly.
   
 3. modify your H5 code.
    Initillize the jsbridge by plugin the following code snippet:
    
    <script language="javascript">
-  
     .....
-    
-      function setUpJSBridge() {
-      
-                    if (window.WVJavaScriptBridge) {return;}
-                    
-                    var messageFramge = document.createElement("iframe");
-                    
+     function setUpJSBridge() {
+                    if (window.WVJavaScriptBridge) {return;} 
+                    var messageFramge = document.createElement("iframe"); 
                     messageFramge.style.display = "none";
-                    
                     messageFramge.src = "kzjsbridge://__kz_jsbridge_load";
-               
                     document.documentElement.appendChild(messageFramge);
-                    
                     setTimeout(function(){document.removeChild(messageFramge)}, 0);
-                    
                 }
-            
       setUpJSBridge()
-      
-      .....
-      
+      .....  
    </script>
 
    
