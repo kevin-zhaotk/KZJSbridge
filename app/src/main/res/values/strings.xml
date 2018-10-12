@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">KZJSBridge</string>
+    <string name="open_webview">Open Web</string>
+    <string name="title_activity_webview">WebviewActivity</string>
+</resources>
