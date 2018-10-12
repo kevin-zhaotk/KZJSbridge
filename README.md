@@ -13,6 +13,7 @@ Core function:
 How to migrate to your project?
 
 1. add dependency in your app's build.gradle
+
  compile 'com.jianlc.jsbridge:KZJSBCore:1.0.0'
 
 2. modify your WebView initillization, replace the original WebViewClient with a new one, a instance of class KZJSBridgeWebViewClient or it's subclass;  
@@ -25,6 +26,7 @@ How to migrate to your project?
   
 3. modify your H5 code.
    Initillize the jsbridge by plugin the following code snippet:
+   
    <script language="javascript">
     .....
       function setUpJSBridge() {
