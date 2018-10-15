@@ -45,3 +45,6 @@ How to migrate to your project?
 
    
 Inspired by the known opensource project 'WebViewJavascriptBridge', I decided to build this jsbridge. I Copied all signicant theory from WebViewJavascriptBridge except method registration. I think the method registration strategy is unefficient, so i replaced this part by refection.
+
+if you want a iOS version too, please visit:
+  https://github.com/kevin-zhaotk/KZWebViewJsBridge
