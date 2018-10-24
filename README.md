@@ -11,7 +11,7 @@ Core function:
 
 
 How to migrate to your project?
-
+## 1. JSBridge
 1. add dependency in your app's build.gradle
 
     compile 'com.jianlc.jsbridge:KZJSBCore:1.0.0'
@@ -29,9 +29,10 @@ How to migrate to your project?
 3. modify your H5 code.
    Initillize the jsbridge by plugin the following code snippet:
    
-   <script language="javascript">
-    .....
-     function setUpJSBridge() {
+   
+         <script language="javascript">
+        .....
+          function setUpJSBridge() {
                     if (window.WVJavaScriptBridge) {return;} 
                     var messageFramge = document.createElement("iframe"); 
                     messageFramge.style.display = "none";
@@ -39,13 +40,27 @@ How to migrate to your project?
                     document.documentElement.appendChild(messageFramge);
                     setTimeout(function(){document.removeChild(messageFramge)}, 0);
                 }
-      setUpJSBridge()
-      .....  
-   </script>
+        setUpJSBridge()
+        .....  
+        </script>
 
    
 Inspired by the known opensource project 'WebViewJavascriptBridge', I decided to build this jsbridge. I Copied all signicant theory from WebViewJavascriptBridge except method registration. I think the method registration strategy is unefficient, so i replaced this part by refection.
 
+## 2. JSBridge2 - based on WebView's javascriptInterface
+All metohd invocations are encapsulated into a Json String, which transfer from H5 to Native; in H5 side, you just need to invoke a predefined module function to achieve this, 'window.webkit.messageHandlers.ActionInvoke.postMessage';
+
+### How to migrate into your project?
+1. add this module dependency to your app's build.gradle as mentioned in section 1 above
+2. WebView initillization is no difference with as mentioned in above JSBridge
+3. method invocation from H5 to native，there is no necessary to initialize the bridge，just invoke the bridge sending message to native appropriately。
+eg：
+  
+      cmd = JSON.stringify({handler:"userId", parameter:"name", callback:"showResult"});
+      AndroidJSBridge.postMessage(cmd);
+      * Attention: your json message should be processed with JSON.stringify in order to compatable with Android
+        
+   
 if you want a iOS version too, please visit:
   https://github.com/kevin-zhaotk/KZWebViewJsBridge
 
