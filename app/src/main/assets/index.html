@@ -38,7 +38,9 @@
             }
                 
             function shareClick() {
-                loadURL("jlcInvoke://shareClick?title=测试分享的标题&content=测试分享的内容&url=http://www.baidu.com");
+                //loadURL("jlcInvoke://shareClick?title=测试分享的标题&content=测试分享的内容&url=http://www.baidu.com");
+                cmd = JSON.stringify({handler:"userId", parameter:"name", callback:"showResult"});
+                AndroidJSBridge.postMessage(cmd);
             }
             
             function locationClick() {
@@ -51,7 +53,8 @@
             function setLocation(location) {
                 //asyncAlert(location);
                 //loadURL("jlcInvoke://UserUtil/mid");
-                document.getElementById("returnValue").value = location;
+                // document.getElementById("returnValue").value = location;
+                AndroidJSBridge.postMessage({handler:'userId', parameter:'name', callback:'showResult'});
             }
             
             function getQRCode(result) {
@@ -98,7 +101,10 @@
                            alert(content);
                            },1);
             }
-            
+
+            function showResult(response) {
+                document.getElementById("returnValue").value = response;
+            }
             
             </script>
             </head>

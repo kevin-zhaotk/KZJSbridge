@@ -28,6 +28,7 @@ public class WebviewActivity extends Activity {
         WebSettings settings = mWebview.getSettings();
         settings.setJavaScriptEnabled(true);
         mWebview.setWebViewClient(new KZJSBridgeWebViewClient(mWebview, JSBridgeUtil.class));
+        
     }
 
     private void loadUrl(String url) {

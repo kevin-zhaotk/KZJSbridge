@@ -9,6 +9,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 
+import com.jianlc.jsbridge2.KZJSBridgeInterface;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,6 +28,7 @@ public class KZJSBridgeWebViewClient extends WebViewClient {
     public KZJSBridgeWebViewClient(WebView webview, Class proxy) {
         this.wmReference = new WeakReference<>(webview);
         this.proxy = proxy;
+        webview.addJavascriptInterface(new KZJSBridgeInterface(webview, proxy), KZJSBridgeInterface.INTERFACE_NAME);
     }
 
     @Override
