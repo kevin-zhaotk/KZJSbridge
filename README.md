@@ -14,11 +14,11 @@ How to migrate to your project?
 ## 1. JSBridge
 1. add dependency in your app's build.gradle
 
-    compile 'com.jianlc.jsbridge:KZJSBCore:1.0.0'
+        compile 'com.jianlc.jsbridge:KZJSBCore:1.0.0'
 
 2. modify your WebView initillization, replace the original WebViewClient with a new one, a instance of class KZJSBridgeWebViewClient or it's subclass;  
   
-    mWebview.setWebViewClient(new KZJSBridgeWebViewClient(mWebview, JSBridgeUtil.class));
+        mWebview.setWebViewClient(new KZJSBridgeWebViewClient(mWebview, JSBridgeUtil.class));
   
   (1) JSBridgeUtil.class, this is the class where you should implement your methods invoked by js side;
   
